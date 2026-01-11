@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #E0B0FF; /* Your signature Lilac */
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.8);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            height: 100px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background: linear-gradient(45deg, #D4AF37, #F5E050); /* Gold */
+            color: black;
+            z-index: 10;
+        }
+
+        #noBtn {
+            background-color: white;
+            color: #2D0B37;
+            position: absolute;
+            transition: 0.1s;
+        }
+
+        /* Success Message Styling */
+        #success {
+            display: none;
+        }
+
+        img {
+            width: 250px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 5px solid #D4AF37;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="questionPage">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="btn-container">
+            <button id="yesBtn" onclick="showSuccess()">YES</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">NO</button>
+        </div>
+    </div>
+
+    <div id="success">
+        <h1>I knew you'd say Yes! 🥰</h1>
+        <p style="color: white; font-size: 1.2rem;">Get ready for the best day ever!</p>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp3eWtxZzR4bm9uY3V6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" alt="Cute Panda">
+        <br>
+        <button class="yesBtn" style="margin-top:20px; background:#D4AF37; padding:10px 20px; border-radius:10px; border:none;" onclick="location.href='https://devinahub.github.io/Sample-7/'">View Our Memories 📸</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Calculate random positions within the screen
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function showSuccess() {
+            document.getElementById('questionPage').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            
+            // Trigger simple confetti effect (Optional but cute)
+            for(let i=0; i<50; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = "❤️";
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            heart.style.color = "white";
+            heart.style.transition = "transform 3s linear";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
+            }, 100);
+
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+    </script>
+</body>
+</html>
